@@ -3,10 +3,12 @@ import logo from "./logo.svg";
 import "./App.css";
 import DisplayNews from "./components/DisplayNews.js";
 import getResults from "./newsloader.js";
+import Error from "./components/Error.js"
 
 function App() {
   //our state, i.e. the results from HN for a certain query
   const [myfeed, setMyfeed] = useState({});
+  const [isError, setIsError] = useState(0);
 
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(0);
@@ -17,7 +19,7 @@ function App() {
   //what happens when you submit your search query: call getResults, which fetches and updates our state ("myfeed")
 
   const getNews = () => {
-    getResults(userQuery, page, setMyfeed, setLoading);
+    getResults(userQuery, page, setMyfeed, setLoading, setIsError);
     setLoading(true);
   };
   useEffect(() => {
@@ -26,8 +28,7 @@ function App() {
 
   return (
     <div className="App">
-      <DisplayNews state={myfeed} loading={loading} setPage={setPage} />
-
+      {isError ? <Error /> : <DisplayNews state={myfeed} loading={loading} setPage={setPage} /> }
     </div>
   );
 }

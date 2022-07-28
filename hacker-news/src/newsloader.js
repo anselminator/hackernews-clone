@@ -1,4 +1,4 @@
-function getResults(qString, page, setMyfeed, setLoading) {
+function getResults(qString, page, setMyfeed, setLoading, setIsError) {
     const url = "http://hn.algolia.com/api/v1/search?query=";
     const endpoint = url + qString + "&page=" + page + "&hitsPerPage=50";
     console.log("Trying to fetch this:", endpoint);
@@ -16,6 +16,7 @@ function getResults(qString, page, setMyfeed, setLoading) {
                 return r;
             } else {
                 console.log("Whoopsie daisy....");
+                setIsError(2);
             }
             return r;
         })
@@ -23,7 +24,7 @@ function getResults(qString, page, setMyfeed, setLoading) {
             console.log("Updating the state NOW ", data);
             setMyfeed(data);
         })
-        .catch((err) => alert(err));
+        .catch((err) => setIsError(3));
 }
 
 export default getResults;
