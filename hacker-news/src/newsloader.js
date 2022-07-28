@@ -12,6 +12,7 @@ function getResults(qString, page, setMyfeed, setLoading) {
                 r = response.json();
                 console.log("hoooray, a response" + r);
                 setLoading(false);
+
                 return r;
             } else {
                 console.log("Whoopsie daisy....");

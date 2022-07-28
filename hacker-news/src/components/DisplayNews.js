@@ -32,6 +32,7 @@ function DisplayNews({ state, loading, setPage }) {
           Page {state?.page + 2}
         </button>
       </span>
+
       {myfeed?.map((i) => (
         <div key={i.objectID}>
           <p>
