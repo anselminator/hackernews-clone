@@ -1,5 +1,5 @@
 import React from "react";
-import notFound from '../404.webp'
+import notFound from './404cat.png'
 function Error() {
         return (
             <>
